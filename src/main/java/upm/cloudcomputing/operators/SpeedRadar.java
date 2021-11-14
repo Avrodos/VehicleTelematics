@@ -11,7 +11,7 @@ public class SpeedRadar {
 
     public static SingleOutputStreamOperator detectSpeedViolation(SingleOutputStreamOperator<VehicleReport> filterOut) {
         return filterOut
-                .filter((VehicleReport e) -> e.getSpeed() > MAX_SPEED)
+                .filter((VehicleReport vr) -> vr.getSpeed() > MAX_SPEED)
                 .map((MapFunction<VehicleReport, SpeedRadarEvent>) in -> {
                     Integer time = in.getTime();
                     Integer VID = in.getVID();
