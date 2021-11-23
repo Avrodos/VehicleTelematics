@@ -8,9 +8,9 @@ public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, 
     private Integer VID;
     private Integer highway;
     private Integer direction;
-    private Integer avgSpeed;
+    private double avgSpeed;
 
-    public AverageSpeedControlEvent(Integer time1, Integer time2,Integer VID, Integer highway, Integer direction, Integer avgSpeed) {
+    public AverageSpeedControlEvent(Integer time1, Integer time2,Integer VID, Integer highway, Integer direction, Double avgSpeed) {
         this.time1 = time1;
         this.time2 = time2;
         this.VID = VID;
@@ -59,11 +59,11 @@ public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, 
         this.direction = direction;
     }
 
-    public Integer getAvgSpeed() {
+    public Double getAvgSpeed() {
         return avgSpeed;
     }
 
-    public void setAvgSpeed(Integer avgSpeed) {
+    public void setAvgSpeed(Double avgSpeed) {
         this.avgSpeed = avgSpeed;
     }
 }
