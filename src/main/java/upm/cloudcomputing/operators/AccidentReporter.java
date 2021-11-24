@@ -17,7 +17,15 @@ public class AccidentReporter {
                 // only take events with speed = 0
                 .filter(vr -> vr.f2 == 0).setParallelism(1)
                 // identify same vehicles
-                .keyBy((KeySelector<VehicleReport, Tuple5<Integer, Integer, Integer, Integer, Integer>>) vehicleReport -> Tuple5.of(vehicleReport.getVID(), vehicleReport.getHighway(), vehicleReport.getDirection(), vehicleReport.getSegment(), vehicleReport.getPosition()))
+                //.keyBy((KeySelector<VehicleReport, Tuple5<Integer, Integer, Integer, Integer, Integer>>) vehicleReport -> Tuple5.of(vehicleReport.getVID(), vehicleReport.getHighway(), vehicleReport.getDirection(), vehicleReport.getSegment(), vehicleReport.getPosition()))
+
+                // flink seems to have trouble with the lamda expression when using Tuples, so lets try an anonymous class
+                .keyBy(new KeySelector<VehicleReport, Tuple5<Integer, Integer, Integer, Integer, Integer>>() {
+                    @Override
+                    public Tuple5<Integer, Integer, Integer, Integer, Integer> getKey(VehicleReport vehicleReport){
+                        return Tuple5.of(vehicleReport.getVID(), vehicleReport.getHighway(), vehicleReport.getDirection(), vehicleReport.getSegment(), vehicleReport.getPosition());
+                    }
+                })
                 .countWindow(4, 1)
                 // desired output
                 .apply(new AccidentReportWindowFunction());

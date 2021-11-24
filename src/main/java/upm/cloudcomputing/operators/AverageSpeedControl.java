@@ -16,7 +16,14 @@ public class AverageSpeedControl {
     public static SingleOutputStreamOperator measureAvg(SingleOutputStreamOperator<VehicleReport> filterOut) {
         return filterOut
                 .filter((VehicleReport vr) -> vr.getSegment()>=52 && vr.getSegment()<=56)
-                .keyBy((KeySelector<VehicleReport, Tuple3<Integer, Integer, Integer>>) vr -> Tuple3.of(vr.getVID(), vr.getHighway(), vr.getDirection()))
+                //.keyBy((KeySelector<VehicleReport, Tuple3<Integer, Integer, Integer>>) vr -> Tuple3.of(vr.getVID(), vr.getHighway(), vr.getDirection()))
+                // flink seems to have trouble with the lamda expression when using Tuples, so lets try an anonymous class
+                .keyBy(new KeySelector<VehicleReport, Tuple3<Integer, Integer, Integer>>() {
+                    @Override
+                    public Tuple3<Integer, Integer, Integer> getKey(VehicleReport vehicleReport){
+                        return Tuple3.of(vehicleReport.getVID(), vehicleReport.getHighway(), vehicleReport.getDirection());
+                    }
+                })
                 .countWindow(4,1) //do not why these numbers?
                 .apply(new AverageWindow());
 
@@ -26,7 +33,7 @@ public class AverageSpeedControl {
             Tuple3<Integer, Integer, Integer>, GlobalWindow> {
 
         @Override
-        public void apply(Tuple3<Integer, Integer, Integer> key, GlobalWindow globalWindow, Iterable<VehicleReport> iterable, Collector<AverageSpeedControlEvent> collector) throws Exception {
+        public void apply(Tuple3<Integer, Integer, Integer> key, GlobalWindow globalWindow, Iterable<VehicleReport> iterable, Collector<AverageSpeedControlEvent> collector) {
         //globalwindow or timewindow?
             int enoughSegments = 0;
 

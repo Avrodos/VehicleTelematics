@@ -96,9 +96,9 @@ public class VehicleTelematics {
 		SingleOutputStreamOperator accidents = AccidentReporter.detectAccidents(filterOut);
 
 		// create output paths
-		String speedFinesOutputPath = String.format("%s%s", outFilePath, "speedfines.csv");
-		String avgSpeedFinesOutputPath = String.format("%s%s", outFilePath, "avgspeedfines.csv");
-		String accidentOutputPath = String.format("%s%s", outFilePath, "accidents.csv");
+		String speedFinesOutputPath = String.format("%s\\%s", outFilePath, "speedfines.csv");
+		String avgSpeedFinesOutputPath = String.format("%s\\%s", outFilePath, "avgspeedfines.csv");
+		String accidentOutputPath = String.format("%s\\%s", outFilePath, "accidents.csv");
 
 		// replace with non-deprecated code
 		speedfines.writeAsCsv(speedFinesOutputPath, FileSystem.WriteMode.OVERWRITE).setParallelism(1);
