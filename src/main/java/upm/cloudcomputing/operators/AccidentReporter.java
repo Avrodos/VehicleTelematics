@@ -19,7 +19,7 @@ public class AccidentReporter {
                 // identify same vehicles
                 //.keyBy((KeySelector<VehicleReport, Tuple5<Integer, Integer, Integer, Integer, Integer>>) vehicleReport -> Tuple5.of(vehicleReport.getVID(), vehicleReport.getHighway(), vehicleReport.getDirection(), vehicleReport.getSegment(), vehicleReport.getPosition()))
 
-                // flink seems to have trouble with the lamda expression when using Tuples, so lets try an anonymous class
+                // flink seems to have trouble with the lambda expression when using Tuples, so lets try an anonymous class
                 .keyBy(new KeySelector<VehicleReport, Tuple5<Integer, Integer, Integer, Integer, Integer>>() {
                     @Override
                     public Tuple5<Integer, Integer, Integer, Integer, Integer> getKey(VehicleReport vehicleReport){
