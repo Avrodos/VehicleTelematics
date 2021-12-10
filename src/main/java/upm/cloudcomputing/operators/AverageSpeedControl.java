@@ -13,7 +13,7 @@ import upm.cloudcomputing.VehicleReport;
 import upm.cloudcomputing.events.AverageSpeedControlEvent;
 
 public class AverageSpeedControl {
-    public static SingleOutputStreamOperator measureAvg(SingleOutputStreamOperator<VehicleReport> filterOut) {
+    public static SingleOutputStreamOperator<AverageSpeedControlEvent> measureAvg(SingleOutputStreamOperator<VehicleReport> filterOut) {
         return filterOut
                 .filter((VehicleReport vr) -> vr.getSegment()>=52 && vr.getSegment()<=56)
                 //.keyBy((KeySelector<VehicleReport, Tuple3<Integer, Integer, Integer>>) vr -> Tuple3.of(vr.getVID(), vr.getHighway(), vr.getDirection()))
@@ -52,9 +52,14 @@ public class AverageSpeedControl {
                 pos2 = Math.max(pos2, currentPos);
             }
             //Have to check that the car completes all segments 52->56
-            double avgSpeed = ((pos2-pos1) / (time2-time1))*2.23694;//in mph
+            double avgSpeed = ((pos2-pos1) * 1.0 / (time2-time1)) * 2.23694;//in mph
             if(avgSpeed > 60){
-                AverageSpeedControlEvent avgEvent = new AverageSpeedControlEvent(time1, time2, key.f0, key.f2, key.f2, avgSpeed);
+                AverageSpeedControlEvent avgEvent = new AverageSpeedControlEvent();
+                avgEvent.setTime1(time1);
+                avgEvent.setTime2(time2);
+                avgEvent.setVID(key.f0);
+                avgEvent.setHighway(key.f1);
+                avgEvent.setDirection(key.f2);
                 collector.collect(avgEvent);
             }
 

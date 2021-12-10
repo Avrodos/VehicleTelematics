@@ -4,88 +4,71 @@ import org.apache.flink.api.java.tuple.Tuple8;
 
 public class VehicleReport extends Tuple8<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> {
 
-    private Integer time;
-    private Integer VID;
-    private Integer speed;
-    private Integer highway;
-    private Integer lane;
-    private Integer direction;
-    private Integer segment;
-    private Integer position;
+    public VehicleReport() {
 
-
-    public VehicleReport(Integer time, Integer VID, Integer speed, Integer highway, Integer lane, Integer direction, Integer segment, Integer position) {
-        this.time = time;
-        this.VID = VID;
-        this.speed = speed;
-        this.highway = highway;
-        this.lane = lane;
-        this.direction = direction;
-        this.segment = segment;
-        this.position = position;
     }
 
     public Integer getTime() {
-        return time;
+        return f0;
     }
 
     public void setTime(Integer time) {
-        this.time = time;
+        this.f0 = time;
     }
 
     public Integer getVID() {
-        return VID;
+        return f1;
     }
 
     public void setVID(Integer VID) {
-        this.VID = VID;
+        this.f1 = VID;
     }
 
     public Integer getSpeed() {
-        return speed;
+        return f2;
     }
 
     public void setSpeed(Integer speed) {
-        this.speed = speed;
+        this.f2 = speed;
     }
 
     public Integer getHighway() {
-        return highway;
+        return f3;
     }
 
     public void setHighway(Integer highway) {
-        this.highway = highway;
+        this.f3 = highway;
     }
 
     public Integer getLane() {
-        return lane;
+        return f4;
     }
 
     public void setLane(Integer lane) {
-        this.lane = lane;
+        this.f4 = lane;
     }
 
     public Integer getDirection() {
-        return direction;
+        return f5;
     }
 
     public void setDirection(Integer direction) {
-        this.direction = direction;
+        this.f5 = direction;
     }
 
     public Integer getSegment() {
-        return segment;
+        return f6;
     }
 
     public void setSegment(Integer segment) {
-        this.segment = segment;
+        this.f6 = segment;
     }
 
     public Integer getPosition() {
-        return position;
+        return f7;
     }
 
     public void setPosition(Integer position) {
-        this.position = position;
+        this.f7 = position;
     }
 }

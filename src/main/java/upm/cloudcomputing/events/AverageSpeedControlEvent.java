@@ -2,68 +2,57 @@ package upm.cloudcomputing.events;
 
 import org.apache.flink.api.java.tuple.Tuple6;
 
-public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, Integer, Integer, Integer> {
-    private Integer time1;
-    private Integer time2;
-    private Integer VID;
-    private Integer highway;
-    private Integer direction;
-    private double avgSpeed;
+public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, Integer, Integer, Double> {
 
-    public AverageSpeedControlEvent(Integer time1, Integer time2,Integer VID, Integer highway, Integer direction, Double avgSpeed) {
-        this.time1 = time1;
-        this.time2 = time2;
-        this.VID = VID;
-        this.highway = highway;
-        this.direction = direction;
-        this.avgSpeed = avgSpeed;
+    public AverageSpeedControlEvent(){
+
     }
 
     public Integer getTime1() {
-        return time1;
+        return f0;
     }
 
     public void setTime1(Integer time1) {
-        this.time1 = time1;
+        this.f0 = time1;
     }
 
     public Integer getTime2() {
-        return time2;
+        return f1;
     }
 
     public void setTime2(Integer time2) {
-        this.time2 = time2;
+        this.f1 = time2;
     }
 
     public Integer getVID() {
-        return VID;
+        return f2;
     }
 
     public void setVID(Integer VID) {
-        this.VID = VID;
+        this.f2 = VID;
     }
 
     public Integer getHighway() {
-        return highway;
+        return f3;
     }
 
     public void setHighway(Integer highway) {
-        this.highway = highway;
+        this.f3 = highway;
     }
 
     public Integer getDirection() {
-        return direction;
+        return f4;
     }
 
     public void setDirection(Integer direction) {
-        this.direction = direction;
+        this.f4 = direction;
     }
 
     public Double getAvgSpeed() {
-        return avgSpeed;
+        return f5;
     }
 
     public void setAvgSpeed(Double avgSpeed) {
-        this.avgSpeed = avgSpeed;
+        this.f5 = avgSpeed;
     }
 }

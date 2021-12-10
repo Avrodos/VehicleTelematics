@@ -3,77 +3,64 @@ package upm.cloudcomputing.events;
 import org.apache.flink.api.java.tuple.Tuple7;
 
 public class AccidentReporterEvent extends Tuple7<Integer, Integer, Integer, Integer, Integer, Integer, Integer> {
-    private Integer time1;
-    private Integer time2;
-    private Integer VID;
-    private Integer highway;
-    private Integer segment;
-    private Integer direction;
-    private Integer position;
 
-    public AccidentReporterEvent(Integer time1, Integer time2,Integer VID, Integer highway, Integer segment, Integer direction, Integer position) {
-        this.time1 = time1;
-        this.time2 = time2;
-        this.VID = VID;
-        this.highway = highway;
-        this.segment = segment;
-        this.direction = direction;
-        this.position = position;
+    public AccidentReporterEvent() {
+
     }
 
     public Integer getTime1() {
-        return time1;
+        return f0;
     }
 
     public void setTime1(Integer time1) {
-        this.time1 = time1;
+        this.f0 = time1;
     }
 
     public Integer getTime2() {
-        return time2;
+        return f1;
     }
 
     public void setTime2(Integer time2) {
-        this.time2 = time2;
+        this.f1 = time2;
     }
 
     public Integer getVID() {
-        return VID;
+        return f2;
     }
 
     public void setVID(Integer VID) {
-        this.VID = VID;
+        this.f2 = VID;
     }
 
     public Integer getHighway() {
-        return highway;
+        return f3;
     }
 
     public void setHighway(Integer highway) {
-        this.highway = highway;
+        this.f3 = highway;
     }
 
     public Integer getSegment() {
-        return segment;
+        return f4;
     }
 
     public void setSegment(Integer segment) {
-        this.segment = segment;
+        this.f4 = segment;
     }
 
     public Integer getDirection() {
-        return direction;
+        return f5;
     }
 
     public void setDirection(Integer direction) {
-        this.direction = direction;
+        this.f5 = direction;
     }
 
     public Integer getPosition() {
-        return position;
+        return f6;
     }
 
     public void setPosition(Integer position) {
-        this.position = position;
+        this.f6 = position;
     }
 }

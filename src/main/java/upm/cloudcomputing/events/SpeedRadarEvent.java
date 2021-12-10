@@ -3,67 +3,56 @@ package upm.cloudcomputing.events;
 import org.apache.flink.api.java.tuple.Tuple6;
 
 public class SpeedRadarEvent extends Tuple6<Integer, Integer, Integer, Integer, Integer, Integer> {
-    private Integer time;
-    private Integer VID;
-    private Integer highway;
-    private Integer segment;
-    private Integer direction;
-    private Integer speed;
 
-    public SpeedRadarEvent(Integer time, Integer VID, Integer highway, Integer segment, Integer direction, Integer speed) {
-        this.time = time;
-        this.VID = VID;
-        this.highway = highway;
-        this.segment = segment;
-        this.direction = direction;
-        this.speed = speed;
+    public SpeedRadarEvent() {
+
     }
 
     public Integer getTime() {
-        return time;
+        return f0;
     }
 
     public void setTime(Integer time) {
-        this.time = time;
+        this.f0 = time;
     }
 
     public Integer getVID() {
-        return VID;
+        return f1;
     }
 
     public void setVID(Integer VID) {
-        this.VID = VID;
+        this.f1 = VID;
     }
 
     public Integer getHighway() {
-        return highway;
+        return f2;
     }
 
     public void setHighway(Integer highway) {
-        this.highway = highway;
+        this.f2 = highway;
     }
 
     public Integer getSegment() {
-        return segment;
+        return f3;
     }
 
     public void setSegment(Integer segment) {
-        this.segment = segment;
+        this.f3 = segment;
     }
 
     public Integer getDirection() {
-        return direction;
+        return f4;
     }
 
     public void setDirection(Integer direction) {
-        this.direction = direction;
+        this.f4 = direction;
     }
 
     public Integer getSpeed() {
-        return speed;
+        return f5;
     }
 
     public void setSpeed(Integer speed) {
-        this.speed = speed;
+        this.f5 = speed;
     }
 }

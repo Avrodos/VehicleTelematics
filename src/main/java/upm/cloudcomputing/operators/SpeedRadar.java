@@ -9,17 +9,18 @@ public class SpeedRadar {
 
     private static final int MAX_SPEED = 90;
 
-    public static SingleOutputStreamOperator detectSpeedViolation(SingleOutputStreamOperator<VehicleReport> filterOut) {
+    public static SingleOutputStreamOperator<SpeedRadarEvent> detectSpeedViolation(SingleOutputStreamOperator<VehicleReport> filterOut) {
         return filterOut
                 .filter((VehicleReport vr) -> vr.getSpeed() > MAX_SPEED)
                 .map((MapFunction<VehicleReport, SpeedRadarEvent>) in -> {
-                    Integer time = in.getTime();
-                    Integer VID = in.getVID();
-                    Integer speed = in.getSpeed();
-                    Integer highway = in.getHighway();
-                    Integer direction = in.getDirection();
-                    Integer segment = in.getSegment();
-                    return new SpeedRadarEvent(time, VID, highway, segment, direction, speed);
+                    SpeedRadarEvent speedRadarEvent = new SpeedRadarEvent();
+                    speedRadarEvent.setTime(in.getTime());
+                    speedRadarEvent.setVID(in.getVID());
+                    speedRadarEvent.setSpeed(in.getSpeed());
+                    speedRadarEvent.setHighway(in.getHighway());
+                    speedRadarEvent.setDirection(in.getDirection());
+                    speedRadarEvent.setSegment(in.getSegment());
+                    return speedRadarEvent;
                 });
     }
 }

@@ -12,7 +12,7 @@ import upm.cloudcomputing.events.AccidentReporterEvent;
 import java.util.Iterator;
 
 public class AccidentReporter {
-    public static SingleOutputStreamOperator detectAccidents(SingleOutputStreamOperator<VehicleReport> filterOut) {
+    public static SingleOutputStreamOperator<AccidentReporterEvent> detectAccidents(SingleOutputStreamOperator<VehicleReport> filterOut) {
         return filterOut
                 // only take events with speed = 0
                 .filter(vr -> vr.f2 == 0).setParallelism(1)
@@ -48,7 +48,14 @@ public class AccidentReporter {
                 VehicleReport vehicleReport = vehicleReportIterator.next();
                 // We will report an accident if vehicle reports 4 consecutive events from the same position
                 if (counter == 4) {
-                    AccidentReporterEvent accidentReporterEvent = new AccidentReporterEvent(time1, vehicleReport.getTime(), inKey.f0, inKey.f1, inKey.f3, inKey.f2, inKey.f4);
+                    AccidentReporterEvent accidentReporterEvent = new AccidentReporterEvent();
+                    accidentReporterEvent.setTime1(time1);
+                    accidentReporterEvent.setTime2(vehicleReport.getTime());
+                    accidentReporterEvent.setVID(inKey.f0);
+                    accidentReporterEvent.setHighway(inKey.f1);
+                    accidentReporterEvent.setSegment(inKey.f3);
+                    accidentReporterEvent.setDirection(inKey.f2);
+                    accidentReporterEvent.setPosition(inKey.f4);
                     collector.collect(accidentReporterEvent);
                 }
             }
