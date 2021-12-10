@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-package upm.cloudcomputing;
+package master;
 
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import upm.cloudcomputing.events.AccidentReporterEvent;
-import upm.cloudcomputing.events.AverageSpeedControlEvent;
-import upm.cloudcomputing.events.SpeedRadarEvent;
-import upm.cloudcomputing.operators.AccidentReporter;
-import upm.cloudcomputing.operators.AverageSpeedControl;
-import upm.cloudcomputing.operators.SpeedRadar;
+import master.events.AccidentReporterEvent;
+import master.events.AverageSpeedControlEvent;
+import master.events.SpeedRadarEvent;
+import master.operators.AccidentReporter;
+import master.operators.AverageSpeedControl;
+import master.operators.SpeedRadar;
 
 /**
  * Skeleton for a Flink Streaming Job.

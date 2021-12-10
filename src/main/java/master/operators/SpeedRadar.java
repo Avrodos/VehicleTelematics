@@ -1,9 +1,9 @@
-package upm.cloudcomputing.operators;
+package master.operators;
 
+import master.VehicleReport;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
-import upm.cloudcomputing.VehicleReport;
-import upm.cloudcomputing.events.SpeedRadarEvent;
+import master.events.SpeedRadarEvent;
 
 public class SpeedRadar {
 

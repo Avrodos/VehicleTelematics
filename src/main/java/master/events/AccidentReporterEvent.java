@@ -1,10 +1,10 @@
-package upm.cloudcomputing.events;
+package master.events;
 
-import org.apache.flink.api.java.tuple.Tuple6;
+import org.apache.flink.api.java.tuple.Tuple7;
 
-public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, Integer, Integer, Double> {
+public class AccidentReporterEvent extends Tuple7<Integer, Integer, Integer, Integer, Integer, Integer, Integer> {
 
-    public AverageSpeedControlEvent(){
+    public AccidentReporterEvent() {
 
     }
 
@@ -40,19 +40,27 @@ public class AverageSpeedControlEvent extends Tuple6<Integer, Integer, Integer, 
         this.f3 = highway;
     }
 
-    public Integer getDirection() {
+    public Integer getSegment() {
         return f4;
     }
 
-    public void setDirection(Integer direction) {
-        this.f4 = direction;
+    public void setSegment(Integer segment) {
+        this.f4 = segment;
     }
 
-    public Double getAvgSpeed() {
+    public Integer getDirection() {
         return f5;
     }
 
-    public void setAvgSpeed(Double avgSpeed) {
-        this.f5 = avgSpeed;
+    public void setDirection(Integer direction) {
+        this.f5 = direction;
+    }
+
+    public Integer getPosition() {
+        return f6;
+    }
+
+    public void setPosition(Integer position) {
+        this.f6 = position;
     }
 }
