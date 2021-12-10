@@ -23,6 +23,9 @@ import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import upm.cloudcomputing.events.AccidentReporterEvent;
+import upm.cloudcomputing.events.AverageSpeedControlEvent;
+import upm.cloudcomputing.events.SpeedRadarEvent;
 import upm.cloudcomputing.operators.AccidentReporter;
 import upm.cloudcomputing.operators.AverageSpeedControl;
 import upm.cloudcomputing.operators.SpeedRadar;
@@ -79,6 +82,8 @@ public class VehicleTelematics {
 		SingleOutputStreamOperator<VehicleReport> filterOut;
 		filterOut = source.map( (MapFunction<String, VehicleReport>) in -> {
 			String[] fieldArray = in.split(",");
+			VehicleReport vehicleReport = new VehicleReport();
+
 			Integer time = Integer.parseInt(fieldArray[0]);
 			Integer VID = Integer.parseInt(fieldArray[1]);
 			Integer speed = Integer.parseInt(fieldArray[2]);
@@ -87,13 +92,22 @@ public class VehicleTelematics {
 			Integer direction = Integer.parseInt(fieldArray[5]);
 			Integer segment = Integer.parseInt(fieldArray[6]);
 			Integer position = Integer.parseInt(fieldArray[7]);
-			return new VehicleReport(time, VID, speed, highway, lane, direction, segment, position);
+
+			vehicleReport.setTime(time);
+			vehicleReport.setVID(VID);
+			vehicleReport.setSpeed(speed);
+			vehicleReport.setHighway(highway);
+			vehicleReport.setLane(lane);
+			vehicleReport.setDirection(direction);
+			vehicleReport.setSegment(segment);
+			vehicleReport.setPosition(position);
+			return vehicleReport;
 		});
 
 		// apply operators
-		SingleOutputStreamOperator speedfines = SpeedRadar.detectSpeedViolation(filterOut);
-		SingleOutputStreamOperator avgspeedfines = AverageSpeedControl.measureAvg(filterOut);
-		SingleOutputStreamOperator accidents = AccidentReporter.detectAccidents(filterOut);
+		SingleOutputStreamOperator<SpeedRadarEvent> speedfines = SpeedRadar.detectSpeedViolation(filterOut);
+		SingleOutputStreamOperator<AverageSpeedControlEvent> avgspeedfines = AverageSpeedControl.measureAvg(filterOut);
+		SingleOutputStreamOperator<AccidentReporterEvent> accidents = AccidentReporter.detectAccidents(filterOut);
 
 		// create output paths
 		String speedFinesOutputPath = String.format("%s\\%s", outFilePath, "speedfines.csv");
