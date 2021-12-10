@@ -1,4 +1,4 @@
-package upm.cloudcomputing.operators;
+package master.operators;
 
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple3;
@@ -9,8 +9,8 @@ import org.apache.flink.streaming.api.windowing.assigners.EventTimeSessionWindow
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
-import upm.cloudcomputing.VehicleReport;
-import upm.cloudcomputing.events.AverageSpeedControlEvent;
+import master.VehicleReport;
+import master.events.AverageSpeedControlEvent;
 
 import java.util.HashSet;
 import java.util.Set;
