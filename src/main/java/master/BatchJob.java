@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package upm.cloudcomputing;
+package master;
 
 import org.apache.flink.api.java.ExecutionEnvironment;
 

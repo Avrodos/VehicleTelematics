@@ -1,13 +1,13 @@
-package upm.cloudcomputing.operators;
+package master.operators;
 
+import master.VehicleReport;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple5;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.util.Collector;
-import upm.cloudcomputing.VehicleReport;
-import upm.cloudcomputing.events.AccidentReporterEvent;
+import master.events.AccidentReporterEvent;
 
 import java.util.Iterator;
 

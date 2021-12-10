@@ -1,16 +1,13 @@
-package upm.cloudcomputing.operators;
+package master.operators;
 
-import org.apache.flink.api.common.eventtime.AscendingTimestampsWatermarks;
+import master.VehicleReport;
 import org.apache.flink.api.java.functions.KeySelector;
-import org.apache.flink.api.java.tuple.Tuple5;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 import org.apache.flink.api.java.tuple.Tuple3;
-import upm.cloudcomputing.VehicleReport;
-import upm.cloudcomputing.events.AverageSpeedControlEvent;
+import master.events.AverageSpeedControlEvent;
 
 public class AverageSpeedControl {
     public static SingleOutputStreamOperator<AverageSpeedControlEvent> measureAvg(SingleOutputStreamOperator<VehicleReport> filterOut) {

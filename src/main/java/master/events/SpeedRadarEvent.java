@@ -1,4 +1,4 @@
-package upm.cloudcomputing.events;
+package master.events;
 
 import org.apache.flink.api.java.tuple.Tuple6;
 
